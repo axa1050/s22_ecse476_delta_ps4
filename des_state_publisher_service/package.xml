@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>mobot_controller</name>
+  <name>des_state_publisher_service</name>
   <version>0.0.0</version>
-  <description>The mobot_controller package</description>
+  <description>The des_state_publisher_service package</description>
   
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
