@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(des_state_publisher_service)
+project(mobot_pub_des_state)
 
 find_package(catkin_simple REQUIRED)
 

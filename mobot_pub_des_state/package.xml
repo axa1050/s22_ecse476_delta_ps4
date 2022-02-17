@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>des_state_publisher_service</name>
+  <name>mobot_pub_des_state</name>
   <version>0.0.0</version>
-  <description>The des_state_publisher_service package</description>
+  <description>The mobot_pub_des_state package</description>
   
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
