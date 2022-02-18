@@ -3,7 +3,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <std_msgs/Float64.h>
 #include <std_msgs/Bool.h>
-#include <mobot_controller/ServiceMsg.h>
+#include <mobot_pub_des_state/path.h>
 #include <nav_msgs/Odometry.h>
 #include <string.h>
 
@@ -43,8 +43,8 @@ void currStateCallback(const nav_msgs::Odometry &odom)
     current_state.pose.pose.position.y = -current_state.pose.pose.position.y;
 }
 
-bool desStateServiceCallBack(mobot_controller::ServiceMsgRequest &request,
-                             mobot_controller::ServiceMsgResponse &response)
+bool desStateServiceCallBack(mobot_pub_des_state::pathRequest &request,
+                             mobot_pub_des_state::pathResponse &response)
 {
     bool success = false;
 

@@ -30,7 +30,8 @@ include_directories(
 )
 
 # Libraries: uncomment the following and edit arguments to create a new library
-#cs_add_library(traj_builder src/traj_builder.cpp)   
+#cs_add_library(traj_builder_s /home/sandy/ros/noetic/ros_ws/src/s22_ecse476_delta_ps4/traj_builder/src/traj_builder.cpp)   
+cs_add_library(traj_builder src/traj_builder.cpp) 
 
 # Executables: uncomment the following and edit arguments to compile new nodes
 # may add more of these lines for more nodes from the same package
@@ -39,7 +40,7 @@ cs_add_executable(cmd_vel_test src/cmd_vel_test.cpp)
 
 #the following is required, if desire to link a node in this package with a library created in this same package
 # edit the arguments to reference the named node and named library within this package
-#target_link_libraries(des_state_publisher_service traj_builder)
+target_link_libraries(des_state_publisher_service traj_builder)
 
 
 cs_install()
