@@ -405,6 +405,9 @@ void TrajBuilder::build_triangular_spin_traj(geometry_msgs::PoseStamped start_po
 //compute trajectory corresponding to applying max prudent decel to halt
 void TrajBuilder::build_braking_traj(geometry_msgs::PoseStamped start_pose,
         std::vector<nav_msgs::Odometry> &vec_of_states) {
+    double x_start = start_pose.pose.position.x;
+    double y_start = start_pose.pose.position.y;
+    //ramp down:
 
 }
 

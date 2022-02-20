@@ -20,6 +20,7 @@ DesStatePublisher::DesStatePublisher(ros::NodeHandle& nh) : nh_(nh) {
     trajBuilder_.set_path_move_tol_(path_move_tol_);
     initializePublishers();
     initializeServices();
+    initializeSubscribers();
     //define a halt state; zero speed and spin, and fill with viable coords
     halt_twist_.linear.x = 0.0;
     halt_twist_.linear.y = 0.0;
@@ -30,6 +31,7 @@ DesStatePublisher::DesStatePublisher(ros::NodeHandle& nh) : nh_(nh) {
     motion_mode_ = DONE_W_SUBGOAL; //init in state ready to process new goal
     e_stop_trigger_ = false; //these are intended to enable e-stop via a service
     e_stop_reset_ = false; //and reset estop
+    lidar_alarm_ = false;
     current_pose_ = trajBuilder_.xyPsi2PoseStamped(0,0,0);
     start_pose_ = current_pose_;
     end_pose_ = current_pose_;
@@ -50,6 +52,7 @@ void DesStatePublisher::initializeServices() {
             &DesStatePublisher::flushPathQueueCB, this);
     append_path_ = nh_.advertiseService("append_path_queue_service",
             &DesStatePublisher::appendPathQueueCB, this);
+
     
 }
 
@@ -59,6 +62,19 @@ void DesStatePublisher::initializePublishers() {
     ROS_INFO("Initializing Publishers");
     desired_state_publisher_ = nh_.advertise<nav_msgs::Odometry>("/desState", 1, true);
     des_psi_publisher_ = nh_.advertise<std_msgs::Float64>("/desPsi", 1);
+}
+
+void DesStatePublisher::initializeSubscribers(){
+    ROS_INFO("Initializing Subscribers");
+    alarm_subscriber_ = nh_.subscribe("lidar_alarm",1,&DesStatePublisher::alarmCallback, this);
+}
+
+void DesStatePublisher::alarmCallback(const std_msgs::Bool& alarm_msg)
+{
+    lidar_alarm_ = alarm_msg.data; //make the alarm status global, so main() can use it
+    if (lidar_alarm_) {
+        ROS_INFO("LIDAR alarm received!");
+    }
 }
 
 bool DesStatePublisher::estopServiceCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response) {

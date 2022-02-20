@@ -46,6 +46,7 @@ private:
     int motion_mode_;
     bool e_stop_trigger_; //these are intended to enable e-stop via a service
     bool e_stop_reset_;
+    bool lidar_alarm_;
     int traj_pt_i_;
     int npts_traj_;
     double dt_;
@@ -64,6 +65,8 @@ private:
     
     ros::Publisher desired_state_publisher_;
     ros::Publisher des_psi_publisher_;
+
+    ros::Subscriber alarm_subscriber_;
     
     //a trajectory-builder object; 
     TrajBuilder trajBuilder_; 
@@ -71,6 +74,8 @@ private:
     // member methods:
     void initializePublishers();
     void initializeServices();
+    void initializeSubscribers();
+    void alarmCallback(const std_msgs::Bool& alarm_msg);
     bool estopServiceCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
     bool clearEstopServiceCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
     bool flushPathQueueCB(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
@@ -82,6 +87,8 @@ public:
     void set_motion_mode(int mode) {motion_mode_ = mode;}
     bool get_estop_trigger() { return e_stop_trigger_;}
     void reset_estop_trigger() { e_stop_trigger_ = false;}
+    bool get_lidar_alarm() { return lidar_alarm_;}
+    void set_lidar_alarm(bool lidar_alarm) { lidar_alarm_ = lidar_alarm;}
     void set_init_pose(double x,double y, double psi);
     void pub_next_state();
     void append_path_queue(geometry_msgs::PoseStamped pose) { path_queue_.push(pose); }
