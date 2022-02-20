@@ -44,12 +44,12 @@
 <build_depend>std_msgs</build_depend>
 <build_depend>geometry_msgs</build_depend>
 <build_depend>nav_msgs</build_depend>
-<build_depend>mobot_pub_des_state</build_depend>
+<build_depend>des_state_publisher_service</build_depend>
   <run_depend>roscpp</run_depend>
 <run_depend>std_msgs</run_depend>
 <run_depend>geometry_msgs</run_depend>
 <run_depend>nav_msgs</run_depend>
-<run_depend>mobot_pub_des_state</run_depend>
+<run_depend>des_state_publisher_service</run_depend>
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- You can specify that this package is a metapackage here: -->

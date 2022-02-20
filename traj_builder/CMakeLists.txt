@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(mobot_pub_des_state)
+project(traj_builder)
 
 find_package(catkin_simple REQUIRED)
 
@@ -24,24 +24,16 @@ catkin_simple()
 # use carefully;  can interfere with point-cloud library
 # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
-include_directories(
-    include
-    ${catkin_INCLUDE_DIRS}
-)
-
 # Libraries: uncomment the following and edit arguments to create a new library
-#cs_add_library(traj_builder_s /home/sandy/ros/noetic/ros_ws/src/s22_ecse476_delta_ps4/traj_builder/src/traj_builder.cpp)   
-cs_add_library(traj_builder src/traj_builder.cpp) 
+cs_add_library(traj_builder src/traj_builder.cpp)   
 
 # Executables: uncomment the following and edit arguments to compile new nodes
 # may add more of these lines for more nodes from the same package
-cs_add_executable(des_state_publisher_service src/des_state_publisher_service.cpp)
-cs_add_executable(cmd_vel_test src/cmd_vel_test.cpp)
+cs_add_executable(traj_builder_example_main src/traj_builder_example_main.cpp)
 
 #the following is required, if desire to link a node in this package with a library created in this same package
 # edit the arguments to reference the named node and named library within this package
-target_link_libraries(des_state_publisher_service traj_builder)
-
+target_link_libraries(traj_builder_example_main traj_builder)
 
 cs_install()
 cs_export()
