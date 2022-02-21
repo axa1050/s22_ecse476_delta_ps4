@@ -1,8 +1,5 @@
-#goal definition
-float64 x
-float64 y
-float64 psi
-int64 mode
---- 
-bool alarm
-bool failed
+geometry_msgs/PoseStamped start_pos
+geometry_msgs/PoseStamped goal_pos
+string mode
+---
+bool success
